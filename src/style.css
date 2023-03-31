@@ -1,0 +1,9 @@
+.clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clock h1 {
+    font-size: 8rem;
+}
