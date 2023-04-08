@@ -67,7 +67,7 @@ async fn main() -> std::io::Result<()> {
    HttpServer::new(|| {
        App::new()
             .wrap(middleware::Logger::default())
-            .configure(auction_routes::config)
+            .configure(auction_route::config)
             .service(index)
    })
    .bind("127.0.0.1:8080")?
