@@ -5,6 +5,7 @@ use chrono::{Utc, Duration, Local};
 use std::fmt::Write;
 
 use crate::models::item::item;
+use crate::models::u_item::uitem;
 
 
 
@@ -30,6 +31,26 @@ async fn get_all_auction_item(auction_item: web::Path<i32>) -> impl Responder {
     HttpResponse::Ok().json(response_body)
 }
 
+#[put("/auctions/items")]
+async fn update_auction(auction_item: web::Path<i32>, u_item: web::Json<uitem>) -> impl Responder {
+    info!("update item");
+    let now = chrono::Local::now();
+
+    let update_item = vec![
+        uitem {
+            message: "Successfully Updated".to_string(),
+            name: "fanta".to_string(),
+            category: "beverage".to_string(),
+            start_price: 30,
+            remaining_time: format_duration(Duration::seconds(14400)),
+            updatedAt: now
+        },
+        ];
+        
+        let response_body = json!(*auction_item);
+        HttpResponse::Ok().json(response_body)
+}
+
 fn format_duration(duration: Duration) -> String {
     let mut result = String::new();
     let seconds = duration.num_seconds();
@@ -45,21 +66,4 @@ fn format_duration(duration: Duration) -> String {
     ).unwrap();
 
     result
-}
-
-#[put("/auctions/items")]
-fn update_auction(info: web::Json<Auction>) -> impl Responder{
-
-    let now = chrono::Local::now();
-
-    let auction_item = vec![
-        item {
-            message: "Successfully Updated".to_string(),
-            name: "fanta".to_string(),
-            category: "beverage".to_string(),
-            start_price: 30,
-            remaining_time: format_duration(Duration::seconds(3600)),
-            updatedAt: now
-        },
-        ];
 }
