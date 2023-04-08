@@ -6,7 +6,7 @@ use std::fmt::Write;
 pub mod routes;
 mod handlers;
 mod models;
-use crate::routes::{auction_routes};
+use crate::routes::{auction_route};
 
 #[get("/")]
 async fn index() -> impl Responder {
