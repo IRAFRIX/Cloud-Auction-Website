@@ -1,16 +1,21 @@
 use actix_web::{get, web, App, HttpResponse, HttpServer, Responder, middleware};
 use env_logger::Env;
-use chrono::Local;
+use chrono::{Utc, Duration, Local};
+use std::fmt::Write;
 
 pub mod routes;
 mod handlers;
 mod models;
-use crate::routes::{cart_routes, shipping_routes};
+use crate::routes::{auction_routes};
 
 #[get("/")]
 async fn index() -> impl Responder {
     let now = chrono::Local::now();
     let time_string = now.format("%H:%M:%S").to_string();
+    let duration = Duration::seconds(14400);
+    let end_time = format_duration(duration);
+    let end_time_string = end_time.to_string();
+
 
     let html = format!(
         r#"
@@ -25,16 +30,34 @@ async fn index() -> impl Responder {
             <body>
                 <div class="clock">
                     <h1 id="clock-display">{}</h1>
+                    <h1 id="clock-display">{}</h1>
                 </div>
             </body>
         </html>
     "#,
-        time_string
+        time_string,
+        end_time_string
     );
 
     HttpResponse::Ok().body(html)
 }
 
+fn format_duration(duration: Duration) -> String {
+    let mut result = String::new();
+    let seconds = duration.num_seconds();
+    let minutes = seconds / 60;
+    let hours = minutes / 60;
+
+    write!(
+        result,
+        "{:02}:{:02}:{:02}",
+        hours % 24,
+        minutes % 60,
+        seconds % 60
+    ).unwrap();
+
+    result
+}
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -44,8 +67,7 @@ async fn main() -> std::io::Result<()> {
    HttpServer::new(|| {
        App::new()
             .wrap(middleware::Logger::default())
-            .configure(cart_routes::config)
-            .configure(shipping_routes::config)
+            .configure(auction_routes::config)
             .service(index)
    })
    .bind("127.0.0.1:8080")?
