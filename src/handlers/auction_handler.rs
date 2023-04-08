@@ -16,17 +16,9 @@ async fn get_all_auction_item(auction_item: web::Path<i32>) -> impl Responder {
 
     let auction_item = vec![
         item {
-            id: 112,
-            name: "fan".to_string(),
-            category: "electronics".to_string(),
-            start_price: 300,
-            remaining_time: format_duration(Duration::seconds(3600)),
-            createdAt: now
-        },
-        item {
             id: 113,
             name: "fanta".to_string(),
-            category: "electronics".to_string(),
+            category: "beverage".to_string(),
             start_price: 30,
             remaining_time: format_duration(Duration::seconds(14400)),
             createdAt: now
@@ -53,4 +45,21 @@ fn format_duration(duration: Duration) -> String {
     ).unwrap();
 
     result
+}
+
+#[put("/auctions/items")]
+fn update_auction(info: web::Json<Auction>) -> impl Responder{
+
+    let now = chrono::Local::now();
+
+    let auction_item = vec![
+        item {
+            message: "Successfully Updated".to_string(),
+            name: "fanta".to_string(),
+            category: "beverage".to_string(),
+            start_price: 30,
+            remaining_time: format_duration(Duration::seconds(3600)),
+            updatedAt: now
+        },
+        ];
 }
