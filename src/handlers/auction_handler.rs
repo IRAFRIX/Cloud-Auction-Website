@@ -43,6 +43,28 @@ async fn get_all_auction_item(auction_item: web::Path<i32>) -> impl Responder {
 
 
 
+#[post("/auctions/item")]
+async fn create_item(auction_item: web::Path<i32>, item: web::Json<item>) -> impl Responder {
+    info!("create new item");
+
+    let now = chrono::Local::now();
+
+    let auction_item = vec![
+        item {  
+            name: "santa".to_string(),
+            category: "cosplay".to_string(),
+            start_price: 800,
+            remaining_time: format_duration(Duration::seconds(600)),
+            id: 114,
+            createdAt: now
+        }
+    ];
+
+    let response_body = json!(auction_item);
+  
+    HttpResponse::Created().json(response_body)
+}
+
 #[put("/auctions/items")]
 async fn update_auction(auction_item: web::Path<i32>, u_item: web::Json<uitem>) -> impl Responder {
     info!("update item");
