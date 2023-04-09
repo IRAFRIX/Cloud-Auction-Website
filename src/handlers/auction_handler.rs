@@ -85,6 +85,23 @@ async fn update_auction(auction_item: web::Path<i32>, u_item: web::Json<uitem>) 
         HttpResponse::Ok().json(response_body)
 }
 
+#[delete("/auctions/items/{id}")]
+async fn delete_auction_by_id(id: web::Path<i32>) -> impl Responder {
+    let auction_id = id.into_inner();
+
+    if auction_id == 114 {
+        let response_body = json!({
+            "message": "Successfully Deleted"
+        });
+        HttpResponse::Ok().json(response_body)
+    }else{
+        return HttpResponse::NotFound().json(json!({
+            "message": "Not Found"
+        }));
+    }
+
+}
+
 fn format_duration(duration: Duration) -> String {
     let mut result = String::new();
     let seconds = duration.num_seconds();
