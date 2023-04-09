@@ -1,4 +1,4 @@
-use actix_web::{web, HttpResponse};
+use actix_web::{web, get, post, put, delete, Responder, HttpResponse};
 use serde_json::json;
 
 /// POST method for `/login`

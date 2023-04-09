@@ -16,7 +16,17 @@ async fn get_all_auction_item(auction_item: web::Path<i32>) -> impl Responder {
     let now = chrono::Local::now();
 
     let auction_item = vec![
-        item {
+
+        item {  
+            id: 112,
+            name: "fan".to_string(),
+            category: "electronics".to_string(),
+            start_price: 300,
+            remaining_time: format_duration(Duration::seconds(3600)),
+            createdAt: now
+        },
+
+        item {  
             id: 113,
             name: "fanta".to_string(),
             category: "beverage".to_string(),
@@ -30,6 +40,8 @@ async fn get_all_auction_item(auction_item: web::Path<i32>) -> impl Responder {
   
     HttpResponse::Ok().json(response_body)
 }
+
+
 
 #[put("/auctions/items")]
 async fn update_auction(auction_item: web::Path<i32>, u_item: web::Json<uitem>) -> impl Responder {
