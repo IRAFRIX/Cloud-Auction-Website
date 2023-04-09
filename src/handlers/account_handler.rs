@@ -8,15 +8,15 @@ use crate::models::account::account;
 async fn check_account(account_id: web::Path<String>) -> impl Responder {
     let account = account {
         userId : "630305123456789".to_string(),
-        userPassword : "1234".to_string(),
+        userPassword: "1234".to_string(),
         userName : "user".to_string(),
         userSurname : "user".to_string() ,
         
     };
-    // Check if account_id is valid and matches account.userId
-    if account_id == account.userId {
+    let response_body = json!(*account_id);
+    if account_id == account.userId.into() {
         HttpResponse::Ok().header("Location", format!("/account/{}", account_id))
-                          .json(account)
+                          .json(response_body)
     } else {
         HttpResponse::Unauthorized().header("Location", format!("/account/{}", account_id))
                                      .json(json!({"message": "Unauthorized"}))
