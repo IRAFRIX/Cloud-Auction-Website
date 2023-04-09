@@ -1,27 +1,31 @@
-use actix_web::{web, HttpResponse, Responder};
+use actix_web::{web, get, post, put, delete, Responder, HttpResponse};
 use serde::{Serialize, Deserialize};
 
-#[derive(Debug, Serialize, Deserialize)]
-fn get_account_by_id(account_id: web::Path<String>) -> impl Responder {
-    let account = Account {
-        let userId = 630305123456789;
-        let userPassword = 1234;
-        let userSurname = "user" ;
-    };
+use serde_json::json;
+use crate::models::account::account;
 
+#[get("/account")]
+async fn check_account(account_id: web::Json<account>) -> impl Responder {
+    let account = account {
+        userId : "630305123456789".to_string(),
+        userPassword : "1234".to_string(),
+        userName : "user".to_string(),
+        userSurname : "user".to_string() ,
+        
+    };
     // Check if account_id is valid and matches account.userId
-    if account_id == account.user_Id {
+    if account_id == account.userId {
         HttpResponse::Ok().header("Location", format!("/account/{}", account_id))
                           .json(account)
     } else {
-        HttpResponse::Unauthorized().header("Location", format!("/account/{}", account_id))
+        HttpResponse::Unauthorized().header("Location", format!("/account{}", account_id))
                                      .json(json!({"message": "Unauthorized"}))
     }
 }
 
 fn config(cfg: &mut web::ServiceConfig) {
     cfg.service(
-        web::resource("/account/{id}")
-            .route(web::get().to(get_account_by_id))
+        web::resource("/account")
+            .route(web::get().to(check_account))
     );
 }
