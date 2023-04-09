@@ -4,7 +4,7 @@ use serde_json::json;
 use crate::models::account::account;
 
 #[derive(Debug, Serialize, Deserialize)]
-struct LoginInfo {
+pub struct LoginInfo {
     userId: u64,
     userPassword: u64,
 }
