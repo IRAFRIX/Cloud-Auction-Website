@@ -39,7 +39,7 @@ async fn login(info: web::Json<LoginInfo>,) -> HttpResponse {
         let response_body = json!({ "message": format!("welcome {}", account.userSurname) });
         HttpResponse::Ok().json(response_body)
     } else {
-        let response_body = json!({ "message": "userId or userPassword incorrect" });
-        HttpResponse::Unauthorized().json(response_body)
+        let body_fail = json!({ "message": "userId or userPassword incorrect" });
+        HttpResponse::Unauthorized().json(body_fail)
     }
 }
