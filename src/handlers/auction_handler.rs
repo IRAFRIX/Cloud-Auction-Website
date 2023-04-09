@@ -44,19 +44,17 @@ async fn get_all_auction_item() -> impl Responder {
 
 
 #[post("/auctions/item")]
-async fn create_item(auction_item: web::Path<i32>, item: web::Json<item>) -> impl Responder {
+async fn create_item(item: web::Json<item>) -> impl Responder {
     info!("create new item");
 
-    let now = chrono::Local::now();
-
     let auction_item = vec![
-        item {  
-            name: "santa".to_string(),
-            category: "cosplay".to_string(),
-            start_price: 800,
-            remaining_time: format_duration(Duration::seconds(600)),
-            id: 114,
-            createdAt: now
+        item {
+            name: item.name.clone(),
+            category: item.category.clone(),
+            start_price: item.start_price,
+            remaining_time: item.remaining_time.clone(),
+            id: item.id,
+            createdAt: item.createdAt.clone(),
         }
     ];
 
@@ -66,23 +64,21 @@ async fn create_item(auction_item: web::Path<i32>, item: web::Json<item>) -> imp
 }
 
 #[put("/auctions/items")]
-async fn update_auction(auction_item: web::Path<i32>, u_item: web::Json<uitem>) -> impl Responder {
+async fn update_auction(uitem: web::Json<uitem>) -> impl Responder {
     info!("update item");
     let now = chrono::Local::now();
 
     let update_item = vec![
         uitem {
-            message: "Successfully Updated".to_string(),
-            name: "fanta".to_string(),
-            category: "beverage".to_string(),
-            start_price: 30,
-            remaining_time: format_duration(Duration::seconds(14400)),
-            updatedAt: now
+            name: uitem.name.clone(),
+            category: uitem.category.clone(),
+            start_price: uitem.start_price,
+            remaining_time: uitem.remaining_time.clone(),
         },
         ];
         
-        let response_body = json!(*auction_item);
-        HttpResponse::Ok().json(response_body)
+        let response_body = json!(update_item);
+        HttpResponse::Ok().json((response_body,"Successfully Updated",now))
 }
 
 #[delete("/auctions/items/{id}")]

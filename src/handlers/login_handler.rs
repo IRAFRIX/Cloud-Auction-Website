@@ -26,9 +26,7 @@ fn get_user_info(userId: u64) -> account {
 
 /// POST method for /login
 #[post("/login")]
-async fn login(
-    info: web::Json<LoginInfo>,  // expecting JSON payload containing userId and userPassword
-) -> HttpResponse {
+async fn login(info: web::Json<LoginInfo>,) -> HttpResponse {
     let userId = info.userId;
     let userPassword = info.userPassword;
 
@@ -41,7 +39,7 @@ async fn login(
         let response_body = json!({ "message": format!("welcome {}", account.userSurname) });
         HttpResponse::Ok().json(response_body)
     } else {
-        let response_body = json!({ "message": "userId or userPassword incorrect" });
-        HttpResponse::Unauthorized().json(response_body)
+        let body_fail = json!({ "message": "userId or userPassword incorrect" });
+        HttpResponse::Unauthorized().json(body_fail)
     }
 }
