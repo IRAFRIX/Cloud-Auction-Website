@@ -16,6 +16,6 @@
 #
 
 
-![Alt text](./apiary.png)
+![Alt text](./APIary/apiary.png)
 
 #
