@@ -2,13 +2,12 @@ use actix_web::{web, get, post, put, delete, Responder, HttpResponse};
 use serde::{Serialize, Deserialize};
 
 use serde_json::json;
-use crate::models::account::account;
+use crate::models::user::account;
 
 #[get("/account/{account_id}")]
 async fn check_account(account_id: web::Path<String>) -> impl Responder {
     let account = account {
         userId : "630305123456789".to_string(),
-        userPassword: "1234".to_string(),
         userName : "user".to_string(),
         userSurname : "user".to_string() ,
         
