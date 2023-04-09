@@ -7,5 +7,4 @@ pub struct account {
     pub userName: String,
     pub userSurname: String,
     pub userPassword: String,
-
 }
