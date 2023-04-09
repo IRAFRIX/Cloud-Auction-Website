@@ -10,7 +10,7 @@ use crate::models::u_item::uitem;
 
 
 #[get("/auctions")]
-async fn get_all_auction_item(auction_item: web::Path<i32>) -> impl Responder {
+async fn get_all_auction_item() -> impl Responder {
     info!("get all item");
 
     let now = chrono::Local::now();
