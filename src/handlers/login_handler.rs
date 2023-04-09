@@ -26,9 +26,7 @@ fn get_user_info(userId: u64) -> account {
 
 /// POST method for /login
 #[post("/login")]
-async fn login(
-    info: web::Json<LoginInfo>,  // expecting JSON payload containing userId and userPassword
-) -> HttpResponse {
+async fn login(info: web::Json<LoginInfo>,) -> HttpResponse {
     let userId = info.userId;
     let userPassword = info.userPassword;
 
