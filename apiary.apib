@@ -1,0 +1,219 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# Project เว็ปประมูล Cloud
+
+
+## Auctions Menu [/auctions]
+
+### List All Auctions [GET]
+
++ Response 200 (application/json)
+
+        {
+          "message": "Successfully get data",
+          "data": [
+            {
+              "id": 112,
+              "name": "fan",
+              "category": "electronics",
+              "start_price": "300",
+              "remaining_time": "01:00:00",
+              "createdAt": "2023-03-19T10:26:38.675Z"
+            },
+            {
+              "id": 113,
+              "name": "fanta",
+              "category": "beverage",
+              "start_price": "30",
+              "remaining_time": "04:00:00",
+              "createdAt": "2023-03-19T10:26:38.675Z"
+            }
+          ]
+        }
+        
+## Auctions Create [/auctions/item]
+
+### Create a New Auction [POST]
+
++ Request (application/json)
+
+        {
+            "id":"114",
+            "name": "santa",
+            "category": "cosplay",
+            "start_price": "800",
+            "remaining_time": "600",
+            "createdAt": "2023-03-19T10:26:38.675Z"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /auctions/2
+
+    + Body
+
+            {
+                "id": "114",
+                "name":  "santa",
+                "category": "cosplay",
+                "start_price": "800",
+                "remaining_time": "600",
+                "createdAt": "2023-03-19T10:26:38.675Z"
+            }
+            
+## Update Auctions [/auctions/items]
+
+### Update a Auction [PUT]
+
++ Request (application/json)
+
+        {
+            "id": "113",
+            "name":"fanta",
+            "category":"beverage",
+            "start_price":"30",
+            "remaining_time":"14400"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /auctions/2
+
+    + Body
+
+            {
+              "message": "Successfully Updated",
+              "name": "fanta",
+              "category": "beverage",
+              "start_price": "30",
+              "remaining_time": "14400",
+              "updatedAt": "2023-03-19T10:22:11.491Z"
+            }
+
+## Delete Auctions [/auctions/items/{id}]
+
+### Delete a Auction [DELETE]
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /auctions/2
+            
+    + Body
+
+            {
+              "message": "Successfully Delete"
+            }
+
++ Response 404 (application/json)
+
+    + Headers
+
+            Location: /auctions/2
+            
+    + Body
+
+            {
+              "message": "Not Found"
+            }
+            
+## Registration Service [/register]
+
+
+### Register [POST]
+
+Register user to the database.
+
++ Request (application/json)
+
+            {
+                "userId": "630305123456789",
+                "userName": "bomcrmon",
+                "userSurname": "Bom",
+                "userPassword": "12345"
+            }
+            
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /login
+
+    + Body
+
+            {
+                "message": "Account Created"
+            }
+
+        
+## Login [/login]
+
+### Login [POST]
+
++ Request (application/json)
+
+    + Headers
+    
+            userId: 630305123456789,
+            userPassword: 1234
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /login/630305123456789
+
+    + Body
+        
+            {
+                "message": "welcome userSurname"
+            }   
+            
++ Response 401 (application/json)
+
+    + Headers
+    
+            Location: /login/630305123456789
+    + Body
+        
+            {
+                "message": "userId or userPassword incorrect"
+            }
+            
+
+## Account [/account]
+
+### Account [GET]
+
++ Response 200 (application/json)
+
+    + Headers
+    
+            Location: /account/630305123456789
+    + Body
+        
+            {
+                "userId": "630305123456789",
+                "userName": "bomcrmon",
+                "userSurname": "Bom"
+
+            }
+        
+
++ Response 401 (application/json)
+
+    + Headers
+    
+            Location: /account/630305123456789
+    + Body
+        
+            {
+            "message": "Unauthorized",
+            }
