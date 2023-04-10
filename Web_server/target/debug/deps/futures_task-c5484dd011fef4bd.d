@@ -1,0 +1,11 @@
+c:\xampp\htdocs\Cloud-Auction-Website\target\debug\deps\futures_task-c5484dd011fef4bd.rmeta: C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\lib.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\spawn.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\arc_wake.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\waker.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\waker_ref.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\future_obj.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\noop_waker.rs
+
+c:\xampp\htdocs\Cloud-Auction-Website\target\debug\deps\futures_task-c5484dd011fef4bd.d: C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\lib.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\spawn.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\arc_wake.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\waker.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\waker_ref.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\future_obj.rs C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\noop_waker.rs
+
+C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\lib.rs:
+C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\spawn.rs:
+C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\arc_wake.rs:
+C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\waker.rs:
+C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\waker_ref.rs:
+C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\future_obj.rs:
+C:\Users\bomcr\.cargo\registry\src\github.com-1ecc6299db9ec823\futures-task-0.3.26\src\noop_waker.rs:
